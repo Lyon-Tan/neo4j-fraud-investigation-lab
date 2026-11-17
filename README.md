@@ -4,6 +4,22 @@ A beginner-to-intermediate **simulated enterprise transaction/data troubleshooti
 
 This is a learning exercise, not a production fraud detector or evidence of professional Neo4j, financial crime, or enterprise support experience. Risk flags are manually supplied examples, not confirmed fraud or outputs from a trained model.
 
+## Language Notes
+
+This repository uses English as the primary technical language.
+
+Short Traditional Chinese and conversational Malaysian Malay notes are included to support learning and interview revision.
+
+Technical terms are intentionally kept in English where commonly used in the industry.
+
+Traditional Chinese:
+繁中備註主要用來快速理解和複習技術概念，部分常用技術詞會保留英文。
+
+Bahasa Melayu:
+Nota BM guna gaya yang biasa ditutur di Malaysia supaya lebih senang faham dan explain masa interview. Istilah technical yang biasa digunakan akan kekal dalam English.
+
+See [Neo4j and Cypher Learning Notes](LEARNING_NOTES.md) for concise revision of graph concepts, Cypher clauses, and investigation signals.
+
 ## Graph model
 
 ```text
@@ -35,6 +51,7 @@ Each `RiskEvent` is one flag occurrence. Two events may have the same category, 
 | [investigation_queries.cypher](investigation_queries.cypher) | Twelve read queries followed by five disposable write demonstrations. |
 | [cleanup.cypher](cleanup.cypher) | Deletes marked lab nodes and removes this lab's named schema objects. |
 | [.gitignore](.gitignore) | Keeps local credentials, database files, exports, caches, and logs out of Git. |
+| [LEARNING_NOTES.md](LEARNING_NOTES.md) | Short Traditional Chinese and Malaysian Malay revision notes with primary English explanations. |
 
 ## Run the lab
 
@@ -122,6 +139,36 @@ SQL can also investigate connected data. Neo4j is useful when relationship explo
 - **Constraints:** unique IDs prevent duplicate identifiers. Uniqueness alone allows missing IDs and does not enforce valid amounts or relationship cardinality. Neo4j creates backing indexes for these constraints. See the [constraint documentation](https://neo4j.com/docs/cypher-manual/current/schema/constraints/create-constraints/).
 - **Indexes:** an amount index can help selective range searches. The planner may prefer a scan for a tiny dataset. Use `EXPLAIN` to inspect a plan without running the statement; `PROFILE` executes the statement, including writes. See the [index documentation](https://neo4j.com/docs/cypher-manual/current/indexes/performance-indexes/create-indexes/).
 - **Financial crime technology:** connecting entities and recording explainable investigation paths are transferable skills. This repository demonstrates synthetic query practice, not regulatory compliance, fraud adjudication, or professional experience.
+
+> 🇹🇼 繁中備註：共用 device 和 linked accounts 只是調查線索，不是 fraud 證明。面試時也要區分 RiskEvent 數量和被標記的 Transaction 數量。
+>
+> 🇲🇾 BM: Shared device dan linked account cuma petunjuk untuk siasat, bukan bukti fraud. Masa interview, bezakan bilangan RiskEvent dengan bilangan Transaction yang ada flag.
+
+## Quick Interview Revision
+
+### What does a traversal explain?
+
+English: Follow User → Transaction → RiskEvent to connect an account to the flags recorded against its transactions.
+
+> 🇹🇼 繁中備註：沿著 User → Transaction → RiskEvent，可以追查帳戶的哪些交易被加上哪些 flag。
+>
+> 🇲🇾 BM: Ikut User → Transaction → RiskEvent untuk tengok transaction akaun tu ada flag apa.
+
+### What is a variable-length path?
+
+English: `[:USES*2..4]` follows two to four relationships; the lab's undirected pattern can link accounts through shared devices.
+
+> 🇹🇼 繁中備註：`[:USES*2..4]` 走兩到四條 relationship；這裡忽略方向，透過 shared device 找 linked accounts。
+>
+> 🇲🇾 BM: `[:USES*2..4]` ikut dua hingga empat relationship. Pattern ni tak ikut arah arrow supaya boleh cari linked account melalui shared device.
+
+### Does sharing a device prove fraud?
+
+English: No. It is a risk signal requiring independent evidence and checks for innocent explanations.
+
+> 🇹🇼 繁中備註：不代表 fraud。共用裝置可能有合理原因，要用其他證據進一步確認。
+>
+> 🇲🇾 BM: Tak semestinya fraud. Mungkin ada sebab biasa untuk kongsi device; kena semak bukti lain dulu.
 
 ## Ten Cypher command families to memorize
 
