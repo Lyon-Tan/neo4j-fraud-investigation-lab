@@ -1,0 +1,40 @@
+# Local credentials and connection settings
+.env
+.env.*
+credentials.*
+secrets.*
+*.pem
+*.key
+.aws/
+.ssh/
+
+# Local Neo4j data, exports, and logs
+/data/
+/logs/
+/import/
+/plugins/
+/certificates/
+/backups/
+/output/
+/conf/
+/neo4j.conf
+/.neo4j/
+*.dump
+*.backup
+*.log
+
+# Local tools, editor settings, caches, and temporary development files
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+.codex/
+.agents/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*~
